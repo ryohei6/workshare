@@ -1,0 +1,45 @@
+
+
+<head>
+<style>
+
+.wrapper{
+    width:100%;
+}
+
+.wrapper .container{
+    max-width:1000px;
+    margin:0px auto;
+    padding:80px 0px;
+}
+
+.wrapper .content {
+    padding:50px;
+    text-align:center;
+}
+
+.wrapper .content .heading{
+    margin:0px 0px 40px 0px;
+    font-size: 24px;
+    font-weight: normal;
+    text-align: center;
+}
+
+</style>
+</head>
+
+<section class="wrapper">
+    <div class="container">
+        <div class="content">
+
+            <% if user_signed_in? %>
+                <h1>Home#index</h1>
+                <p>Find me in app/views/home/index.html.erb</p>
+            <% else %>
+                <h2 class="heading">share your kindness</h2>
+                <p>自由に働こう<br>自由に暮らそう</p>            
+            <% end %>
+
+        </div>
+    </div>
+</section>

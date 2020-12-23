@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @workshare.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @workshare.body %>
+</p>
+
+<%= link_to 'Edit', edit_workshare_path(@workshare) %> |
+<%= link_to 'Back', workshares_path %>
