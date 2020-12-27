@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   resources :workshares
   root to: "home#index"
   resources :users
-  resources :posts 
+  resources :posts
+  resources :home 
 end

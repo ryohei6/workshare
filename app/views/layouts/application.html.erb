@@ -35,6 +35,7 @@
         </div>
       </div>
 
+
     <% if user_signed_in? %>
     <div id="navbarExampleTransparentExample" class="navbar-menu">
       <div class="navbar-end">
@@ -42,7 +43,11 @@
           <div class="field is-grouped">
             <p class="control">
               <%= link_to "logout", destroy_user_session_path, method: :delete, class: "button is-warning is-light" %>
+              <%= link_to user_path(@user) do %>
+              <%= attachment_image_tag @user, :profile_image, fallback: "no-image.png", class: "profile_image is-rounded" %>
+              <% end %>
             </p>
+            
           </div>
         </div>
       </div>
@@ -72,3 +77,5 @@
     <%= yield %>
   </body>
 </html>
+
+

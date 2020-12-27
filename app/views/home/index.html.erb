@@ -25,21 +25,42 @@
     text-align: center;
 }
 
+
+li {
+margin-bottom: 35px;
+}
+
+.hello {
+margin-bottom: 35px;
+}
+
 </style>
 </head>
 
+<% if user_signed_in? %>
+<div class="hello"><%= "#{@user.username}さんこんにちは"  %></div>
+
+<header>
+    <nav id="gnav">
+        <ul class="inner">
+            <li><a href="posts">仕事を探す</a></li>
+
+            <li><a href="posts/new">仕事を依頼する</a></li>
+            
+            <li><a href="users/<%= @user.id %>">マイページ</a></li>
+            
+            <li><a href="#">会社概要</a></li>
+        </ul>
+    </nav>
+</header>
+
+<% else %>
 <section class="wrapper">
     <div class="container">
         <div class="content">
-
-            <% if user_signed_in? %>
-                <h1>Home#index</h1>
-                <p>Find me in app/views/home/index.html.erb</p>
-            <% else %>
-                <h2 class="heading">share your kindness</h2>
-                <p>自由に働こう<br>自由に暮らそう</p>            
-            <% end %>
-
+            <h2 class="heading">share your kindness</h2>
+            <p>自由に働こう<br>自由に暮らそう</p>            
         </div>
     </div>
 </section>
+<% end %>
