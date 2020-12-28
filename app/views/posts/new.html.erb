@@ -35,6 +35,11 @@
             <%= f.text_area :body, class: "textarea" %>
           </div>
 
+          <div class="field">
+            <%= f.label :price, "依頼金額", class: "label" %>
+            <%= f.text_field :price, class: "input" %>
+          </div>
+
           <%= f.submit '投稿', class: "button is-success" %>
         <% end %>
       </div>

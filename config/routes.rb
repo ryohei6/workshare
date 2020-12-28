@@ -4,5 +4,8 @@ Rails.application.routes.draw do
   root to: "home#index"
   resources :users
   resources :posts
-  resources :home 
+  resources :home
+  resources :details
+  delete 'posts/:id' => 'posts#destroy'
+
 end

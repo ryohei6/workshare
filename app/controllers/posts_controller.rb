@@ -54,17 +54,18 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    if user_signed_in?
-      @user = User.find(current_user.id)
-    end
-
-    post = Post.find(params[:id])
-    post.destroy
-    redirect_to user_path(post.user), notice: "削除しました。"
+    @post = Post.find(params[:id])
+    @post.delete
+    redirect_to root_path
   end
 
   private
   def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :body, :price)
+  end
+
+  private
+  def post_destroy_params
+    params.permit(:image_id, :id, :title, :body)
   end
 end
