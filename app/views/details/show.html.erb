@@ -1,0 +1,106 @@
+<section class="hero is-success">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        お仕事詳細
+      </h1>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-7">
+        <div class="card">
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <p class="title is-4"><%= @post.title %></p>
+              </div>
+            </div>
+            <div class="content">
+              <table class="table is-narrow">
+                <tr>
+                  <th>依頼内容</th>
+                </tr>
+                <tr>
+                  <td><%= simple_format @post.body %></td>
+                </tr>
+
+                <tr>
+                  <th>依頼金額</th>
+                </tr>
+                <tr>
+                <td><%= simple_format @post.price %></td>
+                </tr>
+
+                <tr>
+                  <th>依頼者</th>
+                </tr>
+                <tr>
+                <td><%= @post.user.username %></td>
+                </tr>
+
+                <tr>
+                  <th>依頼日時</th>
+                </tr>
+                <tr>
+                <td><%= @post.updated_at %></td>
+                </tr>
+
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-6"> 
+
+        
+        <% @details.each do |f| %>
+
+          <% if @post.id == f.post_id %>
+            <%= f.id %>
+            <%= f.user.username %>
+            <%= f.comment %><br>
+
+          <% if f.user.id == current_user.id %>
+          <%= link_to "コメント削除", detail_path(:fid=> f.id), method: :delete %>
+          <% end %>
+          <% end %>
+          <% end %>
+        
+
+
+      <br>
+      <br>
+      <br>
+      
+      
+      <div>※相手が不快にならないコメントを心がけましょう</div>
+
+        <%= form_for @detail_new do |f| %>
+
+          <%= f.hidden_field :post_id, :value => @post.id %>
+
+          <div class="field">
+            <%= f.label :comment, "コメント", class: "label" %>
+            <%= f.text_area :comment, class: "textarea" %>
+          </div>
+
+
+          <%= f.submit '投稿', class: "button is-success" %>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

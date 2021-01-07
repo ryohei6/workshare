@@ -4,21 +4,33 @@ class WorksharesController < ApplicationController
   # GET /workshares
   # GET /workshares.json
   def index
+    if user_signed_in?
+      @user = User.find(current_user.id)
+    end
     @workshares = Workshare.all
   end
 
   # GET /workshares/1
   # GET /workshares/1.json
   def show
+    if user_signed_in?
+      @user = User.find(current_user.id)
+    end
   end
 
   # GET /workshares/new
   def new
+    if user_signed_in?
+      @user = User.find(current_user.id)
+    end
     @workshare = Workshare.new
   end
 
   # GET /workshares/1/edit
   def edit
+    if user_signed_in?
+      @user = User.find(current_user.id)
+    end
   end
 
   # POST /workshares

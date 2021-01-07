@@ -1,3 +1,23 @@
+<head>
+<style>
+
+.outer{
+  position: relative;
+}
+.inner{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: 80%;
+  height: 3.2rem;
+
+}
+</head>
+</style>
+
 <section class="hero is-success">
   <div class="hero-body">
     <div class="container">
@@ -8,7 +28,15 @@
   </div>
 </section>
 
+<p>検索</p>
+<%= form_tag(posts_path,:method => 'get') do %>
+  <%= text_field_tag :search %>
+  <%= submit_tag 'Search', :name => nil %>
+<% end %>
+
+
 <% @posts.each do |post| %>
+
 <section class="section">
     <div class="container">
       <div class="columns is-centered">
@@ -21,6 +49,7 @@
                 </div>
               </div>
               <div class="content">
+              <%= link_to "詳細はこちら", "/details/#{post.id}"  %>
                 <table class="table is-narrow">
                   <tr>
                     <th>依頼内容</th>
@@ -68,7 +97,11 @@
   </section>
 <% end %>
 
-
+<div class="outer">
+  <div class="inner">
+  <%= paginate @posts %>
+  </div>
+</div>
 
 
 

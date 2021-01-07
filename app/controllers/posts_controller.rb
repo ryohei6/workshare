@@ -4,7 +4,9 @@ class PostsController < ApplicationController
     if user_signed_in?
       @user = User.find(current_user.id)
     end
-    @posts = Post.all
+    #@posts = Post.all
+    @posts = Post.all.order(created_at: :desc)
+    @posts = Post.page(params[:page]).per(2)
   end
 
   def new
@@ -26,7 +28,7 @@ class PostsController < ApplicationController
     if user_signed_in?
       @user = User.find(current_user.id)
     end
-    #@post = Post.new(post_params)
+    
     @post = current_user.posts.build(post_params)
     if @post.save
       redirect_to post_path(@post)
@@ -59,13 +61,14 @@ class PostsController < ApplicationController
     redirect_to root_path
   end
 
+  def search
+    #Viewのformで取得したパラメータをモデルに渡す
+    @posts = Post.search(params[:search])
+  end
+
   private
   def post_params
     params.require(:post).permit(:title, :body, :price)
   end
 
-  private
-  def post_destroy_params
-    params.permit(:image_id, :id, :title, :body)
-  end
 end
