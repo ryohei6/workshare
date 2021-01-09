@@ -5,8 +5,8 @@ class PostsController < ApplicationController
       @user = User.find(current_user.id)
     end
     #@posts = Post.all
-    @posts = Post.all.order(created_at: :desc)
-    @posts = Post.page(params[:page]).per(2)
+    #@posts = Post.all.order(created_at: :desc)
+    @posts = Post.page(params[:page]).per(2).search(params[:search])
   end
 
   def new

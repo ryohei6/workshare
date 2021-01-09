@@ -68,7 +68,6 @@
         <% @details.each do |f| %>
 
           <% if @post.id == f.post_id %>
-            <%= f.id %>
             <%= f.user.username %>
             <%= f.comment %><br>
 
