@@ -43,13 +43,11 @@ margin-bottom: 35px;
 <header>
     <nav id="gnav">
         <ul class="inner">
-            <li><a href="posts">仕事を探す</a></li>
+            <li><%= link_to '仕事を探す', posts_path %></li>
 
-            <li><a href="posts/new">仕事を依頼する</a></li>
+            <li><%= link_to '仕事を依頼する', new_post_path %></li>
             
             <li><a href="users/<%= @user.id %>">マイページ</a></li>
-            
-            <li><a href="#">会社概要</a></li>
         </ul>
     </nav>
 </header>

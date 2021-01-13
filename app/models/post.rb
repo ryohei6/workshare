@@ -6,7 +6,7 @@ class Post < ApplicationRecord
     with_options presence: true do
         validates :title
         validates :body
-        validates :price
+        validates :price, numericality:{only_integer: true}
     end
 
     def self.search(search)
