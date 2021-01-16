@@ -26,6 +26,8 @@
 }
 
 
+
+
 li {
 margin-bottom: 35px;
 }
@@ -37,20 +39,65 @@ margin-bottom: 35px;
 </style>
 </head>
 
+<header>
+</header>
+
+
 <% if user_signed_in? %>
 <div class="hello"><%= "#{@user.username}さんこんにちは"  %></div>
 
-<header>
-    <nav id="gnav">
-        <ul class="inner">
-            <li><%= link_to '仕事を探す', posts_path %></li>
+<% @posts.each do |post| %>
 
-            <li><%= link_to '仕事を依頼する', new_post_path %></li>
-            
-            <li><a href="users/<%= @user.id %>">マイページ</a></li>
-        </ul>
-    </nav>
-</header>
+    <section class="section">
+        <div class="container">
+          <div class="columns is-centered">
+            <div class="column is-7">
+              <div class="card">
+                <div class="card-content">
+                  <div class="media">
+                    <div class="media-content">
+                      <p class="title is-4"><%= post.title %></p>
+                    </div>
+                  </div>
+                  <div class="content">
+                  <%= link_to "詳細はこちら", "/details/#{post.id}"  %>
+                    <table class="table is-narrow">
+                      <tr>
+                        <th>依頼内容</th>
+                      </tr>
+                      <tr>
+                        <td><%= simple_format post.body %></td>
+                      </tr>
+    
+                      <tr>
+                      <th>依頼金額</th>
+                      </tr>
+                      <tr>
+                        <td><%= simple_format post.price %>円</td>
+                      </tr>
+                    </table>
+                    <% if post.user.id == current_user.id %>
+                      <%= link_to "編集画面へ", edit_post_path(post), class: "button is-success" %>
+                      <%= link_to "削除ボタン", "/posts/#{post.id}", method: :delete, data:{confirm: "削除しますか？"}, class: "button is-success" %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+              </article>
+            </div>
+          </div>
+        </div>
+    </section>
+<% end %>
+    
+    <div class="outer">
+      <div class="inner">
+      <%= paginate @posts %>
+      </div>
+    </div>
+
+
 
 <% else %>
 <section class="wrapper">

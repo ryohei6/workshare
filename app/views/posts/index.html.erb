@@ -17,7 +17,7 @@
 }
 
 
-.sbox{
+.search_box{
   position:absolute;/*フォームの絶対位置*/	
   left:0;
   top:0; 	
@@ -28,7 +28,7 @@
   background:#eee;/*検索ボックスの背景カラー*/		
   }
 
-.sbtn{
+.search_btn{
   width:70px;/*検索ボタンの横幅*/ 
   height:50px;/*検索ボタンの縦幅*/ 
   position:absolute;/*検索ボタンの絶対位置*/  
@@ -59,12 +59,16 @@ color:#666;/*検索ボタンマウスオーバー時のフォントカラー*/
   </div>
 </section>
 
-<p>検索</p>
+    <p>検索</p>
 
     <%= form_tag(posts_path,:method => 'get') do %>
-      <%= text_field_tag :search %>
-      <%= submit_tag 'Search', :title => nil, class: "btn btn-primary room-inbtn" %>
-      <% end %>
+      <div class="field">
+        <div class="control">
+          <%= text_field_tag :search %></div>
+          <%= submit_tag 'Search', :title => nil, class: "btn btn-primary room-inbtn" %>
+        </div>
+      </div>
+    <% end %>
 
 <% @posts.each do |post| %>
 
@@ -107,9 +111,21 @@ color:#666;/*検索ボタンマウスオーバー時のフォントカラー*/
   
         <div class="column is-4">
           <article class="panel is-link">
+          <p class="control">
             <p class="panel-heading">
               By <%= post.user.username %>
+              <figure class="image">
+              <%= link_to user_path(@user) do %>
+                <%= attachment_image_tag @user, :profile_image, fallback: "no-image.png" %>
+              <% end %>
+            </figure>
             </p>
+          </p>
+
+
+
+
+
             <div class="panel-block">
               <p class="control">
                 <%= post.user.profile %>

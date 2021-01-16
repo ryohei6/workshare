@@ -1,12 +1,12 @@
 provider "google" {
-  project     = "My First Project"
+  project     = "${PROJECT_ID}"
   region      = "asia-northeast1"
 }
 
 
 resource "google_compute_autoscaler" "foobar" {
   name   = "my-autoscaler"
-  zone   = "asia-northeast1"
+  zone   = "asia-northeast1-a"
   target = google_compute_instance_group_manager.foobar.id
 
   autoscaling_policy {
@@ -50,7 +50,7 @@ resource "google_compute_target_pool" "foobar" {
 
 resource "google_compute_instance_group_manager" "foobar" {
   name = "my-igm"
-  zone = "asia-northeast1"
+  zone = "asia-northeast1-a"
 
   version {
     instance_template  = google_compute_instance_template.foobar.id

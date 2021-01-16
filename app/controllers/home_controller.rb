@@ -4,6 +4,8 @@ class HomeController < ApplicationController
     if user_signed_in?
       @user = User.find(current_user.id)
     end
+
+    @posts = Post.page(params[:page]).order(created_at: :desc).per(2)
     
   end
 
